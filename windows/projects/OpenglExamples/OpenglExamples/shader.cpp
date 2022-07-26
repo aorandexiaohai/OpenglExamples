@@ -9,7 +9,7 @@ GLuint Shader::loadShader(GLenum shader_type, const std::string& shader_source_c
 	shader = glCreateShader(shader_type);
 	if (shader == 0)
 	{
-		ERROR_LOG("glCreateShader");
+		ERROR_LOG_AND_ASSERT("glCreateShader");
 		return 0;
 	}
 	const char* shaderSrc = shader_source_code.c_str();
@@ -28,7 +28,7 @@ GLuint Shader::loadShader(GLenum shader_type, const std::string& shader_source_c
 			char* infoLog = (char*)malloc(sizeof(char) * (infoLen+1));
 			infoLog[infoLen] = 0;
 			glGetShaderInfoLog(shader, infoLen, NULL, infoLog);
-			ERROR_LOG(infoLog);
+			ERROR_LOG_AND_ASSERT(infoLog);
 			free(infoLog);
 		}
 		glDeleteShader(shader);

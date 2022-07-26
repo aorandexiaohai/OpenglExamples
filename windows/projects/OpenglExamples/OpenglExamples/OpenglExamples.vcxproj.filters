@@ -27,6 +27,12 @@
     <ClCompile Include="log.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="program.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="my_utils.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="setting_window.h">
@@ -36,6 +42,12 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="log.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="program.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="my_utils.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
