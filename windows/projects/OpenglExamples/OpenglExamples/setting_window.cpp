@@ -34,8 +34,7 @@ void SettingWindow::render()
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
-	ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
-	//ImGui::Text(u8"我爱大家");
+	ImGui::Begin(u8"Opengl示例列表");                          // Create a window called "Hello, world!" and append into it.
 	std::vector<std::string> vec_all_names;
 	for (auto& s : all_reanders)
 	{
