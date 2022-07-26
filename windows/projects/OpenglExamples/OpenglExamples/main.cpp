@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-#include "SettingWindow.h"
+#include "setting_window.h"
 #include "glad/glad.h"
 #include <GLFW/glfw3.h>
 

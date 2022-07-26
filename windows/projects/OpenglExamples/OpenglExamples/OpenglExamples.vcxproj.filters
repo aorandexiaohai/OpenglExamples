@@ -18,12 +18,24 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="SettingWindow.cpp">
+    <ClCompile Include="setting_window.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="shader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="log.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SettingWindow.h">
+    <ClInclude Include="setting_window.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="shader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="log.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>
