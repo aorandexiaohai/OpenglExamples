@@ -26,7 +26,7 @@ SettingWindow::SettingWindow(void* window_handler)
 	ImGui_ImplGlfw_InitForOpenGL((GLFWwindow*)window_handler, true);
 	ImGui_ImplOpenGL3_Init("#version 130");
 
-	ImFont* font = io.Fonts->AddFontFromFileTTF("./imgui_font/simkai.ttf", 14.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
+	ImFont* font = io.Fonts->AddFontFromFileTTF("./imgui_font/simkai.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesChineseFull());
 	assert(font);
 }
 void SettingWindow::render()
