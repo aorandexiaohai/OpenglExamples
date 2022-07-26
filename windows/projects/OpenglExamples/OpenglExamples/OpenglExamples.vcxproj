@@ -111,6 +111,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>..\..\..\thirdlib\debug\lib\glfw3dll.lib;..\..\..\thirdlib\debug\lib\glad.lib;..\..\..\thirdlib\debug\lib\imguid.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy $(SolutionDir)..\..\thirdlib\debug\bin $(SolutionDir)..\..\..\assets /y</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
