@@ -2,12 +2,21 @@
 #include "setting_window.h"
 #include "glad/glad.h"
 #include <GLFW/glfw3.h>
+#include <vector>
+#include "render.h"
+#include "render_hello_triangle.h"
 
+std::vector<std::shared_ptr<Render>> all_reanders{};
+std::shared_ptr<Render> using_render{};
+SettingWindow* using_setting_window{};
+GLFWwindow* global_window{};
 GLFWwindow* InitWindows();
+void redraw();
 
 
 void framebuff_size_callback(GLFWwindow* window, int width, int height) {
 	glViewport(0, 0, width, height);
+	redraw();
 }
 
 void process_input_callabck(GLFWwindow* window, int key, int scancode, int action, int mods) {
@@ -20,21 +29,26 @@ int main() {
 
 	auto window = InitWindows();
 
+	{
+		all_reanders.push_back(std::make_shared<RenderHelloTriangle>());
+	}
+
 	glViewport(0, 0, 800, 600);
 	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 	glfwSetFramebufferSizeCallback(window, framebuff_size_callback);
 	{
 		SettingWindow sw(window);
+		using_setting_window = &sw;
 		while (!glfwWindowShouldClose(window)) {
 			glfwPollEvents();
 
 			//render.
 			{
-				glClear(GL_COLOR_BUFFER_BIT);
-				sw.render();
-				glfwSwapBuffers(window);
+				redraw();
 			}
 		}
+
+		using_setting_window = nullptr;
 	}
 
 	glfwDestroyWindow(window);
@@ -51,6 +65,7 @@ GLFWwindow* InitWindows()
 	//绘画区域透明
 	//glfwWindowHint(GLFW_TRANSPARENT_FRAMEBUFFER, GLFW_TRUE);
 	GLFWwindow* window = glfwCreateWindow(800, 600, "OpenGLTest", NULL, NULL);
+	global_window = window;
 
 	//无边框
 	//glfwSetWindowAttrib(window, GLFW_DECORATED, GLFW_FALSE);
@@ -68,4 +83,17 @@ GLFWwindow* InitWindows()
 		std::exit(-1);
 	}
 	return window;
+}
+
+void redraw()
+{
+	glClear(GL_COLOR_BUFFER_BIT);
+	if (using_setting_window)
+	{
+		using_setting_window->render();
+	}
+	if (using_render) {
+		using_render->render();
+	}
+	glfwSwapBuffers(global_window);
 }

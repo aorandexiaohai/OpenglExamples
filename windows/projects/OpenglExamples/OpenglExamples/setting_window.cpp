@@ -2,7 +2,13 @@
 #include "imgui.h"
 #include "imgui_impl_opengl3.h"
 #include "imgui_impl_glfw.h"
+#include <vector>
+#include <memory>
+#include "render.h"
 
+extern std::vector<std::shared_ptr<Render>> all_reanders;
+extern std::shared_ptr<Render> using_render;
+#define HIDE_LABEL ("##" + std::to_string(__LINE__)).c_str()
 SettingWindow::SettingWindow(void* window_handler)
 {
 	// Setup Dear ImGui context
@@ -29,7 +35,32 @@ void SettingWindow::render()
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 	ImGui::Begin("Hello, world!");                          // Create a window called "Hello, world!" and append into it.
-	ImGui::Text(u8"我爱大家");
+	//ImGui::Text(u8"我爱大家");
+	std::vector<std::string> vec_all_names;
+	for (auto& s : all_reanders)
+	{
+		vec_all_names.push_back(s->getName());
+	}
+	std::vector<const char*> vec_all_names_c;
+	for (auto& s : vec_all_names) {
+		vec_all_names_c.push_back(s.c_str());
+	}
+
+	static int select_item = -1;
+	if (!vec_all_names_c.empty() && ImGui::Combo(HIDE_LABEL, &select_item, vec_all_names_c.data(), (int)vec_all_names_c.size())) {
+		auto future_render = all_reanders[select_item];
+		if (using_render) {
+			using_render->release();
+		}
+
+		{
+			future_render->init();
+			using_render = future_render;
+		}
+	}
+
+
+
 	ImGui::End();
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
