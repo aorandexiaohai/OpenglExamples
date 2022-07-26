@@ -129,6 +129,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>../../../thirdlib/lib/glad.lib;../../../thirdlib/lib/glfw3dll.lib;../../../thirdlib/lib/imgui.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PreBuildEvent>
+      <Command>xcopy $(SolutionDir)..\..\thirdlib\bin $(SolutionDir)..\..\..\assets /y</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
