@@ -35,7 +35,6 @@ int main() {
 
 	glViewport(0, 0, 800, 600);
 	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
-	glfwSetFramebufferSizeCallback(window, framebuff_size_callback);
 	{
 		SettingWindow sw(window);
 		using_setting_window = &sw;
@@ -77,11 +76,13 @@ GLFWwindow* InitWindows()
 	glfwMakeContextCurrent(window);
 
 	glfwSetKeyCallback(window, process_input_callabck);
+	glfwSetFramebufferSizeCallback(window, framebuff_size_callback);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		std::cout << "Failed to initialize GLAD" << std::endl;
 		std::exit(-1);
 	}
+
 	return window;
 }
 
