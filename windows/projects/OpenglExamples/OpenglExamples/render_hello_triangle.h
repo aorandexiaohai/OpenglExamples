@@ -9,7 +9,7 @@ private:
 	GLuint m_vao{};
 	GLuint m_vbo{};
 public:
-	RenderHelloTriangle() :Render("RenderHelloTriangle") {};
+	RenderHelloTriangle(const std::string& name_utf8 = "RenderHelloTriangle") :Render(name_utf8) {};
 	virtual void render()override;
 	virtual void init() override;
 	virtual void release()override;
