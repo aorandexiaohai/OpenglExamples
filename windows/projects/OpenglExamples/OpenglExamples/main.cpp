@@ -30,7 +30,7 @@ int main() {
 	auto window = InitWindows();
 
 	{
-		all_reanders.push_back(std::make_shared<RenderHelloTriangle>());
+		all_reanders.push_back(std::make_shared<RenderHelloTriangle>(u8"渲染三角形"));
 	}
 
 	glViewport(0, 0, 800, 600);
