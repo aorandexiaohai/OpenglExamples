@@ -6,6 +6,8 @@ class RenderHelloTriangle : public Render
 {
 private:
 	std::shared_ptr<Program> program{};
+	GLuint m_vao{};
+	GLuint m_vbo{};
 public:
 	RenderHelloTriangle() :Render("RenderHelloTriangle") {};
 	virtual void render()override;

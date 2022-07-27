@@ -146,6 +146,7 @@
     <ClCompile Include="shader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="gl_helper.h" />
     <ClInclude Include="log.h" />
     <ClInclude Include="program.h" />
     <ClInclude Include="render.h" />
