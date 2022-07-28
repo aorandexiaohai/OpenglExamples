@@ -6,6 +6,7 @@
 #include "render.h"
 #include "render_hello_triangle.h"
 #include "render_hello_quadangle.h"
+#include "render_hello_quadangle_index.h"
 
 std::vector<std::shared_ptr<Render>> all_reanders{};
 std::shared_ptr<Render> using_render{};
@@ -32,7 +33,8 @@ int main() {
 
 	{
 		all_reanders.push_back(std::make_shared<RenderHelloTriangle>(u8"三角形"));
-		all_reanders.push_back(std::make_shared<RenderHelloQuadangle>(u8"四边形"));
+		all_reanders.push_back(std::make_shared<RenderHelloQuadangle>(u8"四边形(非索引)"));
+		all_reanders.push_back(std::make_shared<RenderHelloQuadangleIndex>(u8"四边形(索引)"));
 	}
 
 	glViewport(0, 0, 800, 600);
