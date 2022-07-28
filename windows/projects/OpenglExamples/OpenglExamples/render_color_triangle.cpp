@@ -1,4 +1,4 @@
-#include "render_color_triangle.h"
+ï»¿#include "render_color_triangle.h"
 #include "gl_helper.h"
 
 
@@ -18,10 +18,10 @@ void RenderColorTriangle::init()
 	glBindVertexArray(m_vao);
 
 	float vVertices[] = {
-		// Î»ÖÃ              // ÑÕÉ«
-		 0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // ÓÒÏÂ
-		-0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // ×óÏÂ
-		 0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // ¶¥²¿
+		// ä½ç½®              // é¢œè‰²
+		 0.5f, -0.5f, 0.0f,  1.0f, 0.0f, 0.0f,   // å³ä¸‹
+		-0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,   // å·¦ä¸‹
+		 0.0f,  0.5f, 0.0f,  0.0f, 0.0f, 1.0f    // é¡¶éƒ¨
 	};
 
 	glGenBuffers(1, &m_vbo);
