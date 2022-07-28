@@ -1,4 +1,4 @@
-#include "render_hello_quadangle.h"
+ï»¿#include "render_hello_quadangle.h"
 #include "gl_helper.h"
 
 
@@ -12,20 +12,20 @@ void RenderHelloQuadangle::render()
 }
 void RenderHelloQuadangle::init()
 {
-	program = std::make_shared<Program>("render_hello_triangle.vs", "render_hello_triangle.fs");
+	program = std::make_shared<Program>("render_1.vs", "render_1.fs");
 
 	glGenVertexArrays(1, &m_vao);
 	glBindVertexArray(m_vao);
 
 	GLfloat vVertices[] = { 
-		// µÚÒ»¸öÈı½ÇĞÎ
-		  0.5f, 0.5f, 0.0f,   // ÓÒÉÏ½Ç
-		  0.5f, -0.5f, 0.0f,  // ÓÒÏÂ½Ç
-		  -0.5f, 0.5f, 0.0f,  // ×óÉÏ½Ç
-		  // µÚ¶ş¸öÈı½ÇĞÎ
-		  0.5f, -0.5f, 0.0f,  // ÓÒÏÂ½Ç
-		  -0.5f, -0.5f, 0.0f, // ×óÏÂ½Ç
-		  -0.5f, 0.5f, 0.0f   // ×óÉÏ½Ç
+		// ç¬¬ä¸€ä¸ªä¸‰è§’å½¢
+		  0.5f, 0.5f, 0.0f,   // å³ä¸Šè§’
+		  0.5f, -0.5f, 0.0f,  // å³ä¸‹è§’
+		  -0.5f, 0.5f, 0.0f,  // å·¦ä¸Šè§’
+		  // ç¬¬äºŒä¸ªä¸‰è§’å½¢
+		  0.5f, -0.5f, 0.0f,  // å³ä¸‹è§’
+		  -0.5f, -0.5f, 0.0f, // å·¦ä¸‹è§’
+		  -0.5f, 0.5f, 0.0f   // å·¦ä¸Šè§’
 	};
 
 	glGenBuffers(1, &m_vbo);

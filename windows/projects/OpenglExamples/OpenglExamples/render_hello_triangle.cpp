@@ -12,7 +12,7 @@ void RenderHelloTriangle::render()
 }
 void RenderHelloTriangle::init()
 {
-	program = std::make_shared<Program>("render_hello_triangle.vs", "render_hello_triangle.fs");
+	program = std::make_shared<Program>("render_1.vs", "render_1.fs");
 
 	glGenVertexArrays(1, &m_vao);
 	glBindVertexArray(m_vao);
