@@ -5,6 +5,7 @@
 #include <vector>
 #include "render.h"
 #include "render_hello_triangle.h"
+#include "render_hello_quadangle.h"
 
 std::vector<std::shared_ptr<Render>> all_reanders{};
 std::shared_ptr<Render> using_render{};
@@ -30,7 +31,8 @@ int main() {
 	auto window = InitWindows();
 
 	{
-		all_reanders.push_back(std::make_shared<RenderHelloTriangle>(u8"渲染三角形"));
+		all_reanders.push_back(std::make_shared<RenderHelloTriangle>(u8"三角形"));
+		all_reanders.push_back(std::make_shared<RenderHelloQuadangle>(u8"四边形"));
 	}
 
 	glViewport(0, 0, 800, 600);

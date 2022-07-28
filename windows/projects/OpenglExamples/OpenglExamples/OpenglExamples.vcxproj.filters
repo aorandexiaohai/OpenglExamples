@@ -36,6 +36,9 @@
     <ClCompile Include="render_hello_triangle.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="render_hello_quadangle.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="setting_window.h">
@@ -60,6 +63,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="gl_helper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="render_hello_quadangle.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

@@ -141,6 +141,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="my_utils.cpp" />
     <ClCompile Include="program.cpp" />
+    <ClCompile Include="render_hello_quadangle.cpp" />
     <ClCompile Include="render_hello_triangle.cpp" />
     <ClCompile Include="setting_window.cpp" />
     <ClCompile Include="shader.cpp" />
@@ -150,6 +151,7 @@
     <ClInclude Include="log.h" />
     <ClInclude Include="program.h" />
     <ClInclude Include="render.h" />
+    <ClInclude Include="render_hello_quadangle.h" />
     <ClInclude Include="render_hello_triangle.h" />
     <ClInclude Include="setting_window.h" />
     <ClInclude Include="shader.h" />
