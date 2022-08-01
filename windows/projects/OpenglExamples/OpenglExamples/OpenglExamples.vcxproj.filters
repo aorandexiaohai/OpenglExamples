@@ -48,6 +48,9 @@
     <ClInclude Include="src\shader.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="src\texture_render.h">
+      <Filter>源文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\log.cpp">
@@ -78,6 +81,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\shader.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="src\texture_render.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

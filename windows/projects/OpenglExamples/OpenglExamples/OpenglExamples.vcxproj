@@ -30,6 +30,7 @@
     <ClInclude Include="src\render_hello_triangle.h" />
     <ClInclude Include="src\setting_window.h" />
     <ClInclude Include="src\shader.h" />
+    <ClInclude Include="src\texture_render.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\log.cpp" />
@@ -42,6 +43,7 @@
     <ClCompile Include="src\render_hello_triangle.cpp" />
     <ClCompile Include="src\setting_window.cpp" />
     <ClCompile Include="src\shader.cpp" />
+    <ClCompile Include="src\texture_render.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
