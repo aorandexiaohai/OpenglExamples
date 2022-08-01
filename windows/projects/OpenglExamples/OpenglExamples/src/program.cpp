@@ -3,6 +3,7 @@
 #include "my_utils.h"
 #include "log.h"
 #include <stdlib.h>
+#include "gl_helper.h"
 Program::Program(const std::string& vertex_shader_file, const std::string& fragment_shader_file)
 {
 	auto vertexShader = Shader::loadShader(GL_VERTEX_SHADER, ReadTextFile(vertex_shader_file));
@@ -42,5 +43,6 @@ Program::~Program()
 
 void Program::setInt(const std::string& value, int v)
 {
-
+	auto x = glGetUniformLocation(m_program, value.c_str());
+	glUniform1i(x, v); // set it manually
 }
