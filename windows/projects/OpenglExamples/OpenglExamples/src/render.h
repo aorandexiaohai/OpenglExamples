@@ -12,6 +12,7 @@ public:
 	virtual ~Render() {};
 	virtual void init() = 0;
 	virtual void release() = 0;
+	virtual void settingRender() {}
 	std::string getName()const {
 		return m_name;
 	}

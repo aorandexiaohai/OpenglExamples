@@ -41,12 +41,34 @@ std::string toStr(const T& t) {
 	return ss.str();
 }
 
+bool show_combobox(const std::string& slider_info_utf8, int& value, int& result, const std::vector<int>& v1, const std::vector<const char*>& v2, const char* unique_label) {
+	auto label = slider_info_utf8;
+	ImGui::Text(label.c_str());
+	ImGui::SameLine();
+	auto x = ImGui::Combo(unique_label, &value, v2.data(), v2.size());
+	if (value >= 0) {
+		result = v1[value];
+	}
+	return x;
+}
+
 bool show_slider_float(const std::string& slider_info_utf8, float min_value, float max_value, float* value, const char* unique_label)
 {
 	auto label = slider_info_utf8 + ":" + toStr(min_value);
 	ImGui::Text(label.c_str());
 	ImGui::SameLine();
 	auto x = ImGui::SliderFloat(unique_label, value, min_value, max_value);
+	ImGui::SameLine();
+	ImGui::Text(toStr(max_value).c_str());
+	return x;
+}
+
+bool show_slider_float2(const std::string& slider_info_utf8, float min_value, float max_value, float* value, const char* unique_label)
+{
+	auto label = slider_info_utf8 + ":" + toStr(min_value);
+	ImGui::Text(label.c_str());
+	ImGui::SameLine();
+	auto x = ImGui::SliderFloat2(unique_label, value, min_value, max_value);
 	ImGui::SameLine();
 	ImGui::Text(toStr(max_value).c_str());
 	return x;
@@ -114,6 +136,11 @@ void SettingWindow::render()
 				using_render = future_render;
 			}
 		}
+
+		if (using_render)
+		{
+			using_render->settingRender();
+		}
 	}
 
 
@@ -127,4 +154,60 @@ SettingWindow::~SettingWindow()
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
+}
+
+
+
+#include "texture_render.h"
+void TextureRender::settingRender()
+{
+	static float texture_2d_original[2] = {};
+	static float texture_2d_size[2] = { 1.0f, 1.0f };
+	{
+		show_slider_float2(u8"纹理坐标源点", -10, 10, texture_2d_original, HIDE_LABEL);
+		ImGui::SameLine();
+		if (ImGui::Button(u8"重置##纹理坐标源点")) {
+			texture_2d_original[0] = texture_2d_original[1] = 0;
+		}
+	}
+	{
+		show_slider_float2(u8"纹理尺寸", 0, 10, texture_2d_size, HIDE_LABEL);
+		ImGui::SameLine();
+		if (ImGui::Button(u8"重置##纹理尺寸")) {
+			texture_2d_size[0] = texture_2d_size[1] = 0;
+		}
+	}
+	ImGui::Text(u8"纹理wraping");
+	{
+		static int select_item1 = -1;
+		int result1 = -1;
+		bool flag1 = show_combobox("", select_item1, result1, { GL_TEXTURE_WRAP_S , GL_TEXTURE_WRAP_T }, { "GL_TEXTURE_WRAP_S" , "GL_TEXTURE_WRAP_T" }, HIDE_LABEL);
+		static int select_item2 = -1;
+		int result2 = -1;
+		bool flag2 = show_combobox("", select_item2, result2, { GL_REPEAT , GL_MIRRORED_REPEAT, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_BORDER }, { "GL_REPEAT" , "GL_MIRRORED_REPEAT", "GL_CLAMP_TO_EDGE", "GL_CLAMP_TO_BORDER" }, HIDE_LABEL);
+		if ((flag1 || flag2) && result1 >= 0 && result2 >= 0) {
+			glTexParameteri(GL_TEXTURE_2D, result1, result2);
+		}
+
+		if (result2 == GL_CLAMP_TO_BORDER) {
+			static float border_color[] = { 1,1,1,1 };
+			ImGui::Text(u8"border颜色:");
+			ImGui::SameLine();
+			if (ImGui::ColorEdit4(HIDE_LABEL, border_color)) {
+				glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, border_color);
+			}
+		}
+	}
+	ImGui::Text(u8"纹理filter");
+	{
+		static int select_item1 = -1;
+		int result1 = -1;
+		bool flag1 = show_combobox("", select_item1, result1, { GL_TEXTURE_MIN_FILTER , GL_TEXTURE_MAG_FILTER }, { "GL_TEXTURE_MIN_FILTER" , "GL_TEXTURE_MAG_FILTER" }, HIDE_LABEL);
+		static int select_item2 = -1;
+		int result2 = -1;
+		bool flag2 = show_combobox("", select_item2, result2, { GL_NEAREST , GL_LINEAR }, { "GL_NEAREST" , "GL_LINEAR" }, HIDE_LABEL);
+		if ((flag1 || flag2) && result1 >= 0 && result2 >= 0) {
+			glTexParameteri(GL_TEXTURE_2D, result1, result2);
+		}
+	}
 }
