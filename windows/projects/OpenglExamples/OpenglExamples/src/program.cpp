@@ -39,3 +39,8 @@ Program::~Program()
 {
 	glDeleteProgram(m_program);
 }
+
+void Program::setInt(const std::string& value, int v)
+{
+
+}
