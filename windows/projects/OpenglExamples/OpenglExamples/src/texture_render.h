@@ -15,5 +15,4 @@ public:
 	virtual void render()override;
 	virtual void init() override;
 	virtual void release()override;
-	virtual void settingRender()override;
 };
