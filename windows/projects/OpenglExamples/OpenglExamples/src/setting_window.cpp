@@ -161,22 +161,6 @@ SettingWindow::~SettingWindow()
 #include "texture_render.h"
 void TextureRender::settingRender()
 {
-	static float texture_2d_original[2] = {};
-	static float texture_2d_size[2] = { 1.0f, 1.0f };
-	{
-		show_slider_float2(u8"纹理坐标源点", -10, 10, texture_2d_original, HIDE_LABEL);
-		ImGui::SameLine();
-		if (ImGui::Button(u8"重置##纹理坐标源点")) {
-			texture_2d_original[0] = texture_2d_original[1] = 0;
-		}
-	}
-	{
-		show_slider_float2(u8"纹理尺寸", 0, 10, texture_2d_size, HIDE_LABEL);
-		ImGui::SameLine();
-		if (ImGui::Button(u8"重置##纹理尺寸")) {
-			texture_2d_size[0] = texture_2d_size[1] = 0;
-		}
-	}
 	ImGui::Text(u8"纹理wraping");
 	{
 		static int select_item1 = -1;

@@ -18,6 +18,8 @@ std::string ReadTextFile(const std::string& file_path)
 
 std::vector<uint8_t> ReadPictureFiles(const std::string& file_path, int& width, int& height)
 {
+	stbi_set_flip_vertically_on_load(true);
+
 	int nrChannels;
 	unsigned char* data = stbi_load(file_path.c_str(), &width, &height, &nrChannels, 4);
 	ERROR_LOG_AND_ASSERT_IF_FALSE(data);
