@@ -9,6 +9,7 @@
 #include "render_hello_quadangle_index.h"
 #include "render_color_triangle.h"
 #include "texture_render.h"
+#include "transform_texture_render.h"
 
 std::vector<std::shared_ptr<Render>> all_reanders{};
 std::shared_ptr<Render> using_render{};
@@ -40,6 +41,7 @@ int main() {
 		all_reanders.push_back(std::make_shared<RenderHelloQuadangleIndex>(u8"四边形(索引)"));
 		all_reanders.push_back(std::make_shared<RenderColorTriangle>(u8"带颜色的三角形"));
 		all_reanders.push_back(std::make_shared<TextureRender>(u8"纹理"));
+		all_reanders.push_back(std::make_shared<TransformTextureRender>(u8"几何操作纹理"));
 	}
 
 	glViewport(0, 0, 800, 600);

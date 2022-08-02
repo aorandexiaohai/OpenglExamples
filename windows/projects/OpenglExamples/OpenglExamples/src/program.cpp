@@ -46,3 +46,9 @@ void Program::setInt(const std::string& value, int v)
 	auto x = glGetUniformLocation(m_program, value.c_str());
 	glUniform1i(x, v); // set it manually
 }
+
+void Program::setFloat16(const std::string& value, float v[16])
+{
+	unsigned int transformLoc = glGetUniformLocation(m_program, value.c_str());
+	glUniformMatrix4fv(transformLoc, 1, GL_FALSE, v);
+}

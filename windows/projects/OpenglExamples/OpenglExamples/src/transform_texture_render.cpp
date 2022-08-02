@@ -1,11 +1,21 @@
-﻿#include "texture_render.h"
+﻿#include "transform_texture_render.h"
 #include "my_utils.h"
 #include "gl_helper.h"
-void TextureRender::render()
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+void TransformTextureRender::render()
 {
 	// Use the program object
 	program->use();
 	program->setInt("ourTexture", 0); // or with shader class
+
+	{
+		glm::mat4 trans = glm::mat4(1.0f);
+		trans =glm::translate(trans, glm::vec3(0.1, 0.1, 0.0));
+		trans = glm::rotate(trans, glm::radians(45.0f), glm::vec3(0, 0, 1.0));
+		program->setFloat16("transform", glm::value_ptr(trans));
+	}
 
 	glActiveTexture(GL_TEXTURE0); // activate the texture unit first before binding texture
 	glBindTexture(GL_TEXTURE_2D, m_tex);
@@ -18,7 +28,7 @@ void TextureRender::render()
 	glBindVertexArray(0);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
-void TextureRender::init()
+void TransformTextureRender::init()
 {
 	glGenTextures(1, &m_tex);
 	glBindTexture(GL_TEXTURE_2D, m_tex);
@@ -38,7 +48,7 @@ void TextureRender::init()
 	glGenerateMipmap(GL_TEXTURE_2D);
 	glBindTexture(GL_TEXTURE_2D, 0);
 
-	program = std::make_shared<Program>("render_3.vs", "render_3.fs");
+	program = std::make_shared<Program>("render_4.vs", "render_4.fs");
 
 
 	static float vertices[] = {
@@ -76,7 +86,7 @@ void TextureRender::init()
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindVertexArray(0);
 }
-void TextureRender::release()
+void TransformTextureRender::release()
 {
 	glDeleteTextures(1, &m_tex);
 	glDeleteBuffers(1, &m_vbo);
