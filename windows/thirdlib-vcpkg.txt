@@ -2,3 +2,4 @@
 .\vcpkg.exe install glad:x64-windows
 .\vcpkg.exe install imgui[opengl3-binding,glfw-binding]:x64-windows
 .\vcpkg.exe install stb:x64-windows
+.\vcpkg.exe install glm:x64-windows
