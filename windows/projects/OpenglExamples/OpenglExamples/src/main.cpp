@@ -10,6 +10,7 @@
 #include "render_color_triangle.h"
 #include "texture_render.h"
 #include "transform_texture_render.h"
+#include "cube_render.h"
 
 std::vector<std::shared_ptr<Render>> all_reanders{};
 std::shared_ptr<Render> using_render{};
@@ -42,6 +43,7 @@ int main() {
 		all_reanders.push_back(std::make_shared<RenderColorTriangle>(u8"带颜色的三角形"));
 		all_reanders.push_back(std::make_shared<TextureRender>(u8"纹理"));
 		all_reanders.push_back(std::make_shared<TransformTextureRender>(u8"几何操作纹理"));
+		all_reanders.push_back(std::make_shared<CubeRender>(u8"带纹理的立方体"));
 	}
 
 	glViewport(0, 0, 800, 600);
@@ -99,7 +101,8 @@ GLFWwindow* InitWindows()
 
 void redraw()
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	glEnable(GL_DEPTH_TEST);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	if (using_setting_window)
 	{
 		using_setting_window->render();

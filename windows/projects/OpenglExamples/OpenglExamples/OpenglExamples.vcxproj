@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\cube_render.h" />
     <ClInclude Include="src\gl_helper.h" />
     <ClInclude Include="src\log.h" />
     <ClInclude Include="src\my_utils.h" />
@@ -34,6 +35,7 @@
     <ClInclude Include="src\transform_texture_render.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\cube_render.cpp" />
     <ClCompile Include="src\log.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\my_utils.cpp" />
