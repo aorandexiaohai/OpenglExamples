@@ -18,7 +18,7 @@ void TransformTextureRender::render()
 	}
 
 	glActiveTexture(GL_TEXTURE0); // activate the texture unit first before binding texture
-	glBindTexture(GL_TEXTURE_2D, m_tex);
+	glBindTexture(GL_TEXTURE_2D, m_tex->getTexId());
 
 	// Load the vertex data
 	glBindVertexArray(m_vao);
@@ -30,24 +30,7 @@ void TransformTextureRender::render()
 }
 void TransformTextureRender::init()
 {
-	glGenTextures(1, &m_tex);
-	glBindTexture(GL_TEXTURE_2D, m_tex);
-	{
-		// set the texture wrapping parameters
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// set texture wrapping to GL_REPEAT (default wrapping method)
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		// set texture filtering parameters
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	}
-	int width{};
-	int height{};
-	auto data = ReadPictureFiles("girl.jpg", width, height);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data.data());
-	//不清楚为啥必须调用这句代码
-	glGenerateMipmap(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, 0);
-
+	m_tex = std::make_shared<Texture>("girl.jpg");
 	program = std::make_shared<Program>("render_4.vs", "render_4.fs");
 
 
@@ -88,7 +71,7 @@ void TransformTextureRender::init()
 }
 void TransformTextureRender::release()
 {
-	glDeleteTextures(1, &m_tex);
+	m_tex = nullptr;
 	glDeleteBuffers(1, &m_vbo);
 	glDeleteBuffers(1, &m_ebo);
 	glDeleteVertexArrays(1, &m_vao);
