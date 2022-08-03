@@ -3,6 +3,8 @@
 #include "glad/glad.h"
 #include <GLFW/glfw3.h>
 #include <vector>
+#include <list>
+#include <numeric>
 #include "render.h"
 #include "render_hello_triangle.h"
 #include "render_hello_quadangle.h"
@@ -112,10 +114,19 @@ void redraw()
 	}
 	last_fps = 0.0;
 	if (using_render) {
+		static std::list<float> all;
 		auto begin = glfwGetTime();
-		using_render->render();
-		auto elasped = glfwGetTime() - begin;
-		last_fps = 1.0f / (elasped);
+		{
+			using_render->render();
+		}
+		//统计近30帧的平均帧率
+		all.push_back(glfwGetTime() - begin);
+		if (all.size() >= 30) {
+			all.pop_front();
+		}
+		last_fps = std::accumulate(all.begin(), all.end(), 0.0f);
+		last_fps /= all.size();
+		last_fps = 1.0f / last_fps;
 	}
 	glfwSwapBuffers(global_window);
 }

@@ -15,7 +15,7 @@ void MoreCubesRender::render()
 	program->setInt("ourTexture", 0); // or with shader class
 	{
 		glm::mat4 view = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
-		glm::mat4 projection = glm::ortho(-10.0, 10.0, -10.0, 10.0, -10.0, 10.0);
+		glm::mat4 projection = glm::ortho(-20.0, 20.0, -20.0, 20.0, -20.0, 20.0);
 		program->setFloat16("projection", glm::value_ptr(projection)); // note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
 		program->setFloat16("view", glm::value_ptr(view));
 	}
