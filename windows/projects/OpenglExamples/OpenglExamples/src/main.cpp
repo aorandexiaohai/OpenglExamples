@@ -114,7 +114,8 @@ void redraw()
 	if (using_render) {
 		auto begin = glfwGetTime();
 		using_render->render();
-		last_fps = 1000.0f / (glfwGetTime() - begin);
+		auto elasped = glfwGetTime() - begin;
+		last_fps = 1.0f / (elasped);
 	}
 	glfwSwapBuffers(global_window);
 }

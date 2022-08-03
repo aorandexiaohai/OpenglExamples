@@ -4,6 +4,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <GLFW/glfw3.h>
+#include "my_utils.h"
+#include <vector>
 
 
 void MoreCubesRender::render()
@@ -12,35 +14,31 @@ void MoreCubesRender::render()
 	program->use();
 	program->setInt("ourTexture", 0); // or with shader class
 	{
-		glm::mat4 ones = glm::mat4(1.0f);
-		program->setFloat16("view", glm::value_ptr(ones));
-		program->setFloat16("projection", glm::value_ptr(ones));
+		glm::mat4 view = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+		glm::mat4 projection = glm::ortho(-10.0, 10.0, -10.0, 10.0, -10.0, 10.0);
+		program->setFloat16("projection", glm::value_ptr(projection)); // note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
+		program->setFloat16("view", glm::value_ptr(view));
 	}
 
 	glActiveTexture(GL_TEXTURE0); // activate the texture unit first before binding texture
 	glBindTexture(GL_TEXTURE_2D, m_tex->getTexId());
 	// Load the vertex data
 	glBindVertexArray(m_vao);
-	glDrawArrays(GL_TRIANGLES, 0, 36);
-	static glm::vec3 cubePositions[] = {
-  glm::vec3(0.0f,  0.0f,  0.0f),
-  glm::vec3(2.0f,  5.0f, -15.0f),
-  glm::vec3(-1.5f, -2.2f, -2.5f),
-  glm::vec3(-3.8f, -2.0f, -12.3f),
-  glm::vec3(2.4f, -0.4f, -3.5f),
-  glm::vec3(-1.7f,  3.0f, -7.5f),
-  glm::vec3(1.3f, -2.0f, -2.5f),
-  glm::vec3(1.5f,  2.0f, -2.5f),
-  glm::vec3(1.5f,  0.2f, -1.5f),
-  glm::vec3(-1.3f,  1.0f, -1.5f)
-	};
-	for (int i = 0; i < sizeof(cubePositions) / sizeof(cubePositions[0]); i++)
+	static std::vector<glm::vec3>  positions{};
+#define MAX_CUBES 200
+	if (positions.empty()) {
+		for (int i = 0; i < MAX_CUBES; i++) {
+			positions.emplace_back(randfloat(-10, 10), randfloat(-10, 10), randfloat(-10, 10));
+		}
+	}
+	for (int i = 0; i < MAX_CUBES; i++)
 	{
 		glm::mat4 model(1.0f);
-		model = glm::translate(model, cubePositions[i]);
-		float angle = 20.0f * i;
-		model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+		float angle = 20.0f * (i + glfwGetTime());
+		model = glm::translate(model, positions[i]);
+		model = glm::rotate(model, glm::radians((float)(angle)), glm::vec3(1.0f, 0.3f, 0.5f));
 		program->setFloat16("model", glm::value_ptr(model));
+		glDrawArrays(GL_TRIANGLES, 0, 36);
 	}
 
 }

@@ -83,13 +83,13 @@ void SettingWindow::render()
 	ImGui::Begin(u8"设置");                          // Create a window called "Hello, world!" and append into it.
 	if (last_fps > 0.0)
 	{
-		if (last_fps <= 120)
+		if (last_fps <= 1000)
 		{
 			ImGui::Text(u8"fps: %.1lf", last_fps);
 		}
 		else
 		{
-			ImGui::Text(u8"fps: > 120.0", last_fps);
+			ImGui::Text(u8"fps: > 1000.0", last_fps);
 		}
 	}
 	if (ImGui::CollapsingHeader(u8"渲染设置")) {
