@@ -63,6 +63,9 @@
     <ClInclude Include="src\transform_texture_render.h">
       <Filter>源文件\Render</Filter>
     </ClInclude>
+    <ClInclude Include="src\more_cubes_render.h">
+      <Filter>源文件\Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\log.cpp">
@@ -105,6 +108,9 @@
       <Filter>源文件\Render</Filter>
     </ClCompile>
     <ClCompile Include="src\transform_texture_render.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\more_cubes_render.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
   </ItemGroup>

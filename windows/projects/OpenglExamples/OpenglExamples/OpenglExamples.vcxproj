@@ -22,6 +22,7 @@
     <ClInclude Include="src\cube_render.h" />
     <ClInclude Include="src\gl_helper.h" />
     <ClInclude Include="src\log.h" />
+    <ClInclude Include="src\more_cubes_render.h" />
     <ClInclude Include="src\my_utils.h" />
     <ClInclude Include="src\program.h" />
     <ClInclude Include="src\render.h" />
@@ -39,6 +40,7 @@
     <ClCompile Include="src\cube_render.cpp" />
     <ClCompile Include="src\log.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\more_cubes_render.cpp" />
     <ClCompile Include="src\my_utils.cpp" />
     <ClCompile Include="src\program.cpp" />
     <ClCompile Include="src\render_color_triangle.cpp" />

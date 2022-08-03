@@ -11,6 +11,7 @@
 #include "texture_render.h"
 #include "transform_texture_render.h"
 #include "cube_render.h"
+#include "more_cubes_render.h"
 
 std::vector<std::shared_ptr<Render>> all_reanders{};
 std::shared_ptr<Render> using_render{};
@@ -45,6 +46,7 @@ int main() {
 		all_reanders.push_back(std::make_shared<TextureRender>(u8"纹理"));
 		all_reanders.push_back(std::make_shared<TransformTextureRender>(u8"几何操作纹理"));
 		all_reanders.push_back(std::make_shared<CubeRender>(u8"带纹理的立方体"));
+		all_reanders.push_back(std::make_shared<MoreCubesRender>(u8"更多的带纹理立方体"));
 	}
 
 	glViewport(0, 0, 800, 600);
