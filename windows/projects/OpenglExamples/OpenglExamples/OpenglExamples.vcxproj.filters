@@ -30,21 +30,6 @@
     <ClInclude Include="src\program.h">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\render.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\render_color_triangle.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\render_hello_quadangle.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\render_hello_quadangle_index.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
-    <ClInclude Include="src\render_hello_triangle.h">
-      <Filter>源文件</Filter>
-    </ClInclude>
     <ClInclude Include="src\setting_window.h">
       <Filter>源文件</Filter>
     </ClInclude>
@@ -54,14 +39,29 @@
     <ClInclude Include="src\texture_render.h">
       <Filter>源文件</Filter>
     </ClInclude>
-    <ClInclude Include="src\transform_texture_render.h">
+    <ClInclude Include="src\texture.h">
       <Filter>源文件</Filter>
     </ClInclude>
     <ClInclude Include="src\cube_render.h">
-      <Filter>源文件</Filter>
+      <Filter>源文件\Render</Filter>
     </ClInclude>
-    <ClInclude Include="src\texture.h">
-      <Filter>源文件</Filter>
+    <ClInclude Include="src\render.h">
+      <Filter>源文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render_color_triangle.h">
+      <Filter>源文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render_hello_quadangle.h">
+      <Filter>源文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render_hello_quadangle_index.h">
+      <Filter>源文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render_hello_triangle.h">
+      <Filter>源文件\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="src\transform_texture_render.h">
+      <Filter>源文件\Render</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -77,18 +77,6 @@
     <ClCompile Include="src\program.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\render_color_triangle.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\render_hello_quadangle.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\render_hello_quadangle_index.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="src\render_hello_triangle.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\setting_window.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -98,14 +86,26 @@
     <ClCompile Include="src\texture_render.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="src\transform_texture_render.cpp">
+    <ClCompile Include="src\texture.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="src\cube_render.cpp">
-      <Filter>源文件</Filter>
+      <Filter>源文件\Render</Filter>
     </ClCompile>
-    <ClCompile Include="src\texture.cpp">
-      <Filter>源文件</Filter>
+    <ClCompile Include="src\render_color_triangle.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render_hello_quadangle.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render_hello_quadangle_index.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render_hello_triangle.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\transform_texture_render.cpp">
+      <Filter>源文件\Render</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
