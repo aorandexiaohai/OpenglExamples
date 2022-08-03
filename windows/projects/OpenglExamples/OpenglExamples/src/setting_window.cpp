@@ -10,6 +10,7 @@
 
 extern std::vector<std::shared_ptr<Render>> all_reanders;
 extern std::shared_ptr<Render> using_render;
+extern double last_fps;
 #define HIDE_LABEL ("##" + std::to_string(__LINE__)).c_str()
 
 static uint64_t dynamic_label{};
@@ -80,7 +81,17 @@ void SettingWindow::render()
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 	ImGui::Begin(u8"设置");                          // Create a window called "Hello, world!" and append into it.
-
+	if (last_fps > 0.0)
+	{
+		if (last_fps <= 120)
+		{
+			ImGui::Text(u8"fps: %.1lf", last_fps);
+		}
+		else
+		{
+			ImGui::Text(u8"fps: > 120.0", last_fps);
+		}
+	}
 	if (ImGui::CollapsingHeader(u8"渲染设置")) {
 		//static int is_fill = true;
 		static size_t mode = GL_FILL;

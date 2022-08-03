@@ -17,6 +17,7 @@ std::shared_ptr<Render> using_render{};
 SettingWindow* using_setting_window{};
 GLFWwindow* global_window{};
 GLFWwindow* InitWindows();
+double last_fps = 0.0f;
 
 void redraw();
 
@@ -107,8 +108,11 @@ void redraw()
 	{
 		using_setting_window->render();
 	}
+	last_fps = 0.0;
 	if (using_render) {
+		auto begin = glfwGetTime();
 		using_render->render();
+		last_fps = 1000.0f / (glfwGetTime() - begin);
 	}
 	glfwSwapBuffers(global_window);
 }
