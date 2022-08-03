@@ -31,6 +31,7 @@
     <ClInclude Include="src\render_hello_triangle.h" />
     <ClInclude Include="src\setting_window.h" />
     <ClInclude Include="src\shader.h" />
+    <ClInclude Include="src\texture.h" />
     <ClInclude Include="src\texture_render.h" />
     <ClInclude Include="src\transform_texture_render.h" />
   </ItemGroup>
@@ -46,6 +47,7 @@
     <ClCompile Include="src\render_hello_triangle.cpp" />
     <ClCompile Include="src\setting_window.cpp" />
     <ClCompile Include="src\shader.cpp" />
+    <ClCompile Include="src\texture.cpp" />
     <ClCompile Include="src\texture_render.cpp" />
     <ClCompile Include="src\transform_texture_render.cpp" />
   </ItemGroup>
