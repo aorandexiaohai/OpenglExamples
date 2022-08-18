@@ -16,6 +16,9 @@
     <Filter Include="源文件\Render">
       <UniqueIdentifier>{988a4f41-c5a0-45ee-a6ea-45df8fd1f120}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\Camera">
+      <UniqueIdentifier>{cd6c4c87-6edd-4799-9338-f4f15d9961a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\gl_helper.h">
@@ -69,6 +72,12 @@
     <ClInclude Include="src\camera_cube_render.h">
       <Filter>源文件\Render</Filter>
     </ClInclude>
+    <ClInclude Include="src\camera.h">
+      <Filter>源文件\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\camera_cube_render_2.h">
+      <Filter>源文件\Render</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\log.cpp">
@@ -117,6 +126,12 @@
       <Filter>源文件\Render</Filter>
     </ClCompile>
     <ClCompile Include="src\camera_cube_render.cpp">
+      <Filter>源文件\Render</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera.cpp">
+      <Filter>源文件\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\camera_cube_render_2.cpp">
       <Filter>源文件\Render</Filter>
     </ClCompile>
   </ItemGroup>

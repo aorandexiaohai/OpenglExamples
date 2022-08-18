@@ -5,6 +5,7 @@
 #include <vector>
 #include <list>
 #include <numeric>
+#include <thread>
 #include "render.h"
 #include "render_hello_triangle.h"
 #include "render_hello_quadangle.h"
@@ -15,6 +16,7 @@
 #include "cube_render.h"
 #include "more_cubes_render.h"
 #include "camera_cube_render.h"
+#include "camera_cube_render_2.h"
 
 std::vector<std::shared_ptr<Render>> all_reanders{};
 std::shared_ptr<Render> using_render{};
@@ -35,6 +37,28 @@ void process_input_callabck(GLFWwindow* window, int key, int scancode, int actio
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
 		glfwSetWindowShouldClose(window, true);
 	}
+	if (using_render) {
+		if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+		{
+			using_render->m_context.press_list['w'] = true;
+			using_render->m_context.press_list['W'] = true;
+		}
+		if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+		{
+			using_render->m_context.press_list['s'] = true;
+			using_render->m_context.press_list['S'] = true;
+		}
+		if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+		{
+			using_render->m_context.press_list['a'] = true;
+			using_render->m_context.press_list['A'] = true;
+		}
+		if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+		{
+			using_render->m_context.press_list['d'] = true;
+			using_render->m_context.press_list['D'] = true;
+		}
+	}
 }
 
 int main() {
@@ -51,6 +75,7 @@ int main() {
 		all_reanders.push_back(std::make_shared<CubeRender>(u8"带纹理的立方体"));
 		all_reanders.push_back(std::make_shared<MoreCubesRender>(u8"更多的带纹理立方体"));
 		all_reanders.push_back(std::make_shared<CameraCubeRender>(u8"让摄像机动起来"));
+		all_reanders.push_back(std::make_shared<CameraCubeRender2>(u8"会移动的摄像机"));
 	}
 
 	glViewport(0, 0, 800, 600);
@@ -118,8 +143,16 @@ void redraw()
 	if (using_render) {
 		static std::list<float> all;
 		auto begin = glfwGetTime();
+		const float maximal_fps = 120.0f;
 		{
+			auto t1 = glfwGetTime();
 			using_render->render();
+			using_render->m_context.reset();
+			auto t2 = glfwGetTime();
+			auto left_time = 1000.0f / maximal_fps - (t2 - t1)*1000.0f;
+			if (left_time > 0) {
+				std::this_thread::sleep_for(std::chrono::milliseconds((int)(left_time + 0.5)));
+			}
 		}
 		//统计近30帧的平均帧率
 		all.push_back(glfwGetTime() - begin);

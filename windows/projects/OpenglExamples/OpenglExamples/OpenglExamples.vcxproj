@@ -19,7 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\camera.h" />
     <ClInclude Include="src\camera_cube_render.h" />
+    <ClInclude Include="src\camera_cube_render_2.h" />
     <ClInclude Include="src\cube_render.h" />
     <ClInclude Include="src\gl_helper.h" />
     <ClInclude Include="src\log.h" />
@@ -38,7 +40,9 @@
     <ClInclude Include="src\transform_texture_render.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\camera.cpp" />
     <ClCompile Include="src\camera_cube_render.cpp" />
+    <ClCompile Include="src\camera_cube_render_2.cpp" />
     <ClCompile Include="src\cube_render.cpp" />
     <ClCompile Include="src\log.cpp" />
     <ClCompile Include="src\main.cpp" />
