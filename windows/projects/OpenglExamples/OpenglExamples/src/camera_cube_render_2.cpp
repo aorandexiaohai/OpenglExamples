@@ -42,7 +42,7 @@ void CameraCubeRender2::init()
 {
 	program = std::make_shared<Program>("render_5.vs", "render_5.fs");
     m_tex = std::make_shared<Texture>("girl.jpg");
-    m_camera = std::make_shared<Camera>();
+    m_camera = std::make_shared<SimpleCamera>();
     m_last_time = -1.0f;
 
     m_camera->m_pos = glm::vec3(0.0f, 0.0f, 3.0f);

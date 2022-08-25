@@ -11,7 +11,7 @@ private:
 	GLuint m_vao{};
 	GLuint m_vbo{};
 	std::shared_ptr<Texture> m_tex{};
-	std::shared_ptr<Camera> m_camera{};
+	std::shared_ptr<SimpleCamera> m_camera{};
 	float m_last_time{};
 public:
 	CameraCubeRender2(const std::string& name_utf8) :Render(name_utf8) {};
