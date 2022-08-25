@@ -1,0 +1,1 @@
+find .   -type f -iname "*.cpp" -or -iname "*.h" -or -iname "*.c" -or -iname "*.cc" -or -iname "*.hpp" | xargs clang-format -i
