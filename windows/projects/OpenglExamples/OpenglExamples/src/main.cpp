@@ -105,13 +105,14 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 	static bool flag = false;
 	double last_xpos = {};
 	double last_ypos = {};
-	if (flag)
+	if (flag && using_render)
 	{
 		using_render->m_context.m_move_down = (ypos < last_ypos);
 		using_render->m_context.m_move_up = (ypos > last_ypos);
 		using_render->m_context.m_move_left = (xpos < last_xpos);
 		using_render->m_context.m_move_right = (xpos > last_xpos);
 	}
+	flag = true;
 	last_xpos = xpos;
 	last_ypos = ypos;
 }
