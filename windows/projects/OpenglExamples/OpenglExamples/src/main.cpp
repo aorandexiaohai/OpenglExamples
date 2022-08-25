@@ -100,6 +100,22 @@ int main() {
 	return 0;
 }
 
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	static bool flag = false;
+	double last_xpos = {};
+	double last_ypos = {};
+	if (flag)
+	{
+		using_render->m_context.m_move_down = (ypos < last_ypos);
+		using_render->m_context.m_move_up = (ypos > last_ypos);
+		using_render->m_context.m_move_left = (xpos < last_xpos);
+		using_render->m_context.m_move_right = (xpos > last_xpos);
+	}
+	last_xpos = xpos;
+	last_ypos = ypos;
+}
+
 GLFWwindow* InitWindows()
 {
 	glfwInit();
@@ -122,6 +138,8 @@ GLFWwindow* InitWindows()
 
 	glfwSetKeyCallback(window, process_input_callabck);
 	glfwSetFramebufferSizeCallback(window, framebuff_size_callback);
+	//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	glfwSetCursorPosCallback(window, mouse_callback);
 
 	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
 		std::cout << "Failed to initialize GLAD" << std::endl;

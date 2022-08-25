@@ -1,29 +1,71 @@
 #include "camera.h"
 
-void SimpleCamera::moveFront(float elapsed_time)
+
+Camera::Camera(const glm::vec3 pos , float pitch , float yaw , float move_speed , float rotate_speed )
 {
-	m_pos += m_speed * m_front;
-}
-void SimpleCamera::moveBack(float elapsed_time)
-{
-	m_pos -= m_speed * m_front;
-}
-void SimpleCamera::moveLeft(float elapsed_time)
-{
-	m_pos -= glm::normalize(glm::cross(m_front, m_up)) * m_speed;
-}
-void SimpleCamera::moveRight(float elapsed_time)
-{
-	m_pos += glm::normalize(glm::cross(m_front, m_up)) * m_speed;
+	m_pos = pos;
+	m_pitch = pitch;
+	m_yaw = yaw;
+	m_move_speed = move_speed;
+	m_rotate_speed = rotate_speed;
 }
 
-glm::mat4 SimpleCamera::getViewMatrix() const
+glm::mat4 Camera::getViewMatrix() const
 {
-	return glm::lookAt(m_pos, m_pos + m_front, m_up);
+	return glm::lookAt(m_pos, m_pos + getCameraFront(), getCameraUp());
 }
 
-void SimpleCamera::moveAccordingPressList(RenderContext* context, float elapsed_time)
+glm::vec3 Camera::getCameraFront() const
 {
+	return getCameraRotateMatrix() * glm::vec4(CONST_CAMERA_FRONT, 1.0f);
+}
+
+glm::vec3 Camera::getCameraUp() const
+{
+	return getCameraRotateMatrix() * glm::vec4(CONST_CAMERA_UP, 1.0f);
+}
+
+void Camera::moveFront(float elapsed_time)
+{
+	m_pos += m_move_speed * getCameraFront();
+}
+void Camera::moveBack(float elapsed_time)
+{
+	m_pos -= m_move_speed * getCameraFront();
+}
+void Camera::moveLeft(float elapsed_time)
+{
+	m_pos -= glm::normalize(glm::cross(getCameraFront(), getCameraUp())) * m_move_speed;
+}
+void Camera::moveRight(float elapsed_time)
+{
+	m_pos += glm::normalize(glm::cross(getCameraFront(), getCameraUp())) * m_move_speed;
+}
+
+void Camera::pitchUp(float elapsed_time)
+{
+	m_pitch += elapsed_time * m_rotate_speed;
+	clampPitch();
+}
+void Camera::pitchDown(float elapsed_time)
+{
+	m_pitch -= elapsed_time * m_rotate_speed;
+	clampPitch();
+}
+
+void Camera::yawRight(float elapsed_time)
+{
+	m_yaw += elapsed_time * m_rotate_speed;
+}
+
+void Camera::yawLeft(float elapsed_time)
+{
+	m_yaw -= elapsed_time * m_rotate_speed;
+}
+
+void Camera::update(RenderContext* context)
+{
+	auto elapsed_time = context->elapsed_time;
 	if (context->press_list['w']) {
 		this->moveFront(elapsed_time);
 	}
@@ -36,4 +78,21 @@ void SimpleCamera::moveAccordingPressList(RenderContext* context, float elapsed_
 	if (context->press_list['d']) {
 		this->moveRight(elapsed_time);
 	}
+
+	if (context->m_move_down) {
+		this->pitchDown(elapsed_time);
+	}
+	if (context->m_move_up) {
+		this->pitchUp(elapsed_time);
+	}
+
+	if (context->m_move_left) {
+		this->yawLeft(elapsed_time);
+	}
+	if (context->m_move_right) {
+		this->yawRight(elapsed_time);
+	}
+
 }
+
+

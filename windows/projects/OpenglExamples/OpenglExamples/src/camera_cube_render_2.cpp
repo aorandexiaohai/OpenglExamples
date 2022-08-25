@@ -19,7 +19,8 @@ void CameraCubeRender2::render()
         {
             auto now_time = glfwGetTime();
             if (m_last_time >= 0) {
-                m_camera->moveAccordingPressList(&this->m_context, now_time - m_last_time);
+                m_context.elapsed_time = now_time - m_last_time;
+                m_camera->update(&this->m_context);
             }
             m_last_time = now_time;
             auto view = m_camera->getViewMatrix();
@@ -42,13 +43,8 @@ void CameraCubeRender2::init()
 {
 	program = std::make_shared<Program>("render_5.vs", "render_5.fs");
     m_tex = std::make_shared<Texture>("girl.jpg");
-    m_camera = std::make_shared<SimpleCamera>();
+    m_camera = std::make_shared<Camera>(glm::vec3(0.0f, 0.0f, 3.0f));
     m_last_time = -1.0f;
-
-    m_camera->m_pos = glm::vec3(0.0f, 0.0f, 3.0f);
-    m_camera->m_front = glm::vec3(0.0f, 0.0f, -1.0f);
-    m_camera->m_up = glm::vec3(0.0f, 1.0f, 0.0f);
-    m_camera->m_speed = 0.05;
 
 	glGenVertexArrays(1, &m_vao);
 	glBindVertexArray(m_vao);
