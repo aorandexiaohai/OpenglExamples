@@ -18,7 +18,7 @@ class Camera
 
   public:
     Camera(const glm::vec3 pos = {}, float pitch = {}, float yaw = {}, float move_speed = 2.5f,
-           float rotate_speed = 2.5f);
+           float rotate_speed = 10.0f);
 
     glm::mat4 getViewMatrix() const;
 

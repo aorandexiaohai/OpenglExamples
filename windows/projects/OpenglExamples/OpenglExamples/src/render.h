@@ -1,22 +1,49 @@
 #pragma once
 #include <string>
+#include <cmath>
 class RenderContext
 {
   public:
     bool press_list[256] = {};
     float elapsed_time{};
-    bool m_move_left = {};
-    bool m_move_right = {};
-    bool m_move_up = {};
-    bool m_move_down = {};
+    int m_last_x = -1;
+    int m_last_y = -1;
+    int m_current_x = -1;
+    int m_current_y = -1;
     void reset()
     {
-        memset(press_list, 0, sizeof(press_list));
-        elapsed_time = {};
-        m_move_left = {};
-        m_move_right = {};
-        m_move_up = {};
-        m_move_down = {};
+        *this = {};
+        m_last_x = -1;
+        m_last_y = -1;
+        m_current_x = -1;
+        m_current_y = -1;
+    }
+
+    bool isMoveLeft() const
+    {
+        return m_last_x >= 0 && m_current_x < m_last_x;
+    }
+    bool isMoveRight() const
+    {
+        return m_last_x >= 0 && m_current_x > m_last_x;
+    }
+    bool isMoveDown() const
+    {
+        return m_last_y >= 0 && m_current_y < m_last_y;
+    }
+    bool isMoveUp() const
+    {
+        return m_last_y >= 0 && m_current_y > m_last_y;
+    }
+
+    int xDiff() const
+    {
+        return std::abs(m_current_x - m_last_x);
+    }
+
+    int yDiff() const
+    {
+        return std::abs(m_current_y - m_last_y);
     }
 };
 class Render

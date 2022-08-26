@@ -107,19 +107,13 @@ int main()
 
 void mouse_callback(GLFWwindow *window, double xpos, double ypos)
 {
-    static bool flag = false;
-    double last_xpos = {};
-    double last_ypos = {};
-    if (flag && using_render)
+    if (using_render)
     {
-        using_render->m_context.m_move_down = (ypos < last_ypos);
-        using_render->m_context.m_move_up = (ypos > last_ypos);
-        using_render->m_context.m_move_left = (xpos < last_xpos);
-        using_render->m_context.m_move_right = (xpos > last_xpos);
+        using_render->m_context.m_last_x = using_render->m_context.m_current_x;
+        using_render->m_context.m_last_y = using_render->m_context.m_current_y;
+        using_render->m_context.m_current_x = xpos;
+        using_render->m_context.m_current_y = ypos;
     }
-    flag = true;
-    last_xpos = xpos;
-    last_ypos = ypos;
 }
 
 GLFWwindow *InitWindows()

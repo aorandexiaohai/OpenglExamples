@@ -82,21 +82,21 @@ void Camera::update(RenderContext *context)
         this->moveRight(elapsed_time);
     }
 
-    if (context->m_move_down)
+    if (context->isMoveDown())
     {
-        this->pitchDown(elapsed_time);
+        this->pitchDown(elapsed_time * context->yDiff());
     }
-    if (context->m_move_up)
+    if (context->isMoveUp())
     {
-        this->pitchUp(elapsed_time);
+        this->pitchUp(elapsed_time * context->yDiff());
     }
 
-    if (context->m_move_left)
+    if (context->isMoveLeft())
     {
-        this->yawLeft(elapsed_time);
+        this->yawLeft(elapsed_time * context->xDiff());
     }
-    if (context->m_move_right)
+    if (context->isMoveRight())
     {
-        this->yawRight(elapsed_time);
+        this->yawRight(elapsed_time * context->xDiff());
     }
 }
